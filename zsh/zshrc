@@ -1,0 +1,56 @@
+# ~/.zshrc
+
+# initialize completions
+autoload -Uz compinit && compinit
+
+## history file configuration
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=10000
+
+## History command configuration
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt inc_append_history     # add commands to HISTFILE in order of execution
+setopt share_history # share command history data
+
+# dircolors
+alias ls='ls --color=auto'
+if [ -f "$HOME/.dircolors" ]; then
+    eval `dircolors -b "$HOME/.dircolors"`
+else
+    if [ -f "/etc/dircolors" ]; then
+    eval `dircolors -b "/etc/dircolors"`
+    fi
+fi
+
+# List directory contents
+alias lsa='ls -lah'
+alias l='ls -lah'
+alias ll='ls -lh'
+alias la='ls -lAh'
+
+# check weather
+weather() {
+    city="$1"
+
+    if [ -z "$city" ]; then
+        city="Hannover,Germany"
+    fi
+
+    eval "curl http://wttr.in/${city}"
+}
+
+# reload configurations
+alias reload="exec ${SHELL} -l"
+
+# lazy load zsh-nvm
+export NVM_LAZY_LOAD=true
+
+# load antibody and bundle plugins
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
+

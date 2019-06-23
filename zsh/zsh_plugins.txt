@@ -1,0 +1,14 @@
+# theme
+denysdovhan/spaceship-prompt
+
+# nvm
+lukechilds/zsh-nvm
+
+# oh-my-zsh plugins
+robbyrussell/oh-my-zsh path:plugins/git
+
+voronkovich/gitignore.plugin.zsh
+
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
