@@ -21,7 +21,7 @@ set laststatus=2
 " toggle nerdtree
 map <C-o> :NERDTreeToggle<CR>
 
-" use gruvbox
+" use palenight 
 set background=dark
 colorscheme palenight
 let g:lightline = {
@@ -31,3 +31,6 @@ let g:palenight_terminal_italics=1
 if (has("termguicolors"))
   set termguicolors
 endif
+
+" disable backups
+:set nobackup
