@@ -1,7 +1,36 @@
 # ~/.zshrc
 
-# initialize completions
-autoload -Uz compinit && compinit
+export ZPLUG_HOME=${HOME}/.zplug
+# install zplug if not yet installed
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update --self
+fi
+
+source ~/.zplug/init.zsh
+
+zplug "denysdovhan/spaceship-prompt", as:theme
+zplug "chrissicool/zsh-256color"
+zplug "seebi/dircolors-solarized"
+
+export NVM_LAZY_LOAD=true
+zplug "lukechilds/zsh-nvm"
+
+zplug "voronkovich/gitignore.plugin.zsh"
+zplug "plugins/git", from:oh-my-zsh
+
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+if ! zplug check; then
+    zplug install
+fi
+
+zplug load
+
+# load dircolors
+eval $(dircolors ${ZPLUG_HOME}/repos/seebi/dircolors-solarized/dircolors.256dark)
 
 ## history file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
@@ -46,11 +75,3 @@ weather() {
 
 # reload configurations
 alias reload="exec ${SHELL} -l"
-
-# lazy load zsh-nvm
-export NVM_LAZY_LOAD=true
-
-# load antibody and bundle plugins
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
-

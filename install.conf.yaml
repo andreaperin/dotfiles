@@ -8,7 +8,6 @@
     ~/.vim: vim
     ~/.vimrc: vim/vimrc
     ~/.zshrc: zsh/zshrc
-    ~/.zsh_plugins.txt: zsh/zsh_plugins.txt
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
