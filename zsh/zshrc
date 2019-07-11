@@ -73,5 +73,9 @@ weather() {
     eval "curl http://wttr.in/${city}"
 }
 
+# fix delete key
+bindkey	"^[[3~"		delete-char
+bindkey	"^[3;5~"	delete-char
+
 # reload configurations
 alias reload="exec ${SHELL} -l"
