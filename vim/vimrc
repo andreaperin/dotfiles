@@ -34,3 +34,8 @@ endif
 
 " disable backups
 :set nobackup
+
+" configure tabs
+:set tabstop=4
+:set shiftwidth=0
+:set expandtab
