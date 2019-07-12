@@ -12,6 +12,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'ntpeters/vim-better-whitespace'
 
 call plug#end()
 
@@ -21,7 +22,7 @@ set laststatus=2
 " toggle nerdtree
 map <C-o> :NERDTreeToggle<CR>
 
-" use palenight 
+" use palenight
 set background=dark
 colorscheme palenight
 let g:lightline = {

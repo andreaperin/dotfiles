@@ -67,7 +67,7 @@ if [ -f /etc/os-release ]; then
     . /etc/os-release
 
     case $NAME in
-        
+
         'Solus')
             alias update='sudo eopkg up'
             install() {
