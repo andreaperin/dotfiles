@@ -1,5 +1,7 @@
 # ~/.zshrc
 
+umask 022
+
 export ZPLUG_HOME=${HOME}/.zplug
 # install zplug if not yet installed
 if [[ ! -d ~/.zplug ]]; then
