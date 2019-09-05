@@ -13,6 +13,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'JuliaEditorSupport/julia-vim'
 
 call plug#end()
 
