@@ -37,11 +37,13 @@ SPACESHIP_PROMPT_ORDER=(
   dir           # Current directory section
   host          # Hostname section
   git           # Git section (git_branch + git_status)
+  maven         # Maven section
   node          # Node.js section
   golang        # Go section
   julia         # Julia section
   docker        # Docker section
   venv          # virtualenv section
+  conda         # conda virtualenv section
   exec_time     # Execution time
   line_sep      # Line break
   battery       # Battery level and status
