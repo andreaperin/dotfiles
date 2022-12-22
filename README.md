@@ -26,3 +26,6 @@ Steps to follow for step a brand new os
 - Set NF-font as windows terminal default font
 - Install VScode
 - Change terminal.external.font in settings
+
+## 1.1) TODO
+- add check for powershell 7 and vscode download
