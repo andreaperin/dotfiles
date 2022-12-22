@@ -2,6 +2,9 @@
 Steps to follow for step a brand new os
 
 ## 1) Windows
+### 1.1) Prerequisites
+- Git Installed
+- Fira Code Mono NF installed and working (https://eng.m.fontke.com/font/61026051/download/)
 - Download a Nerd Font with Powerline Symbols (e.g FiraCode NF, Caskdadia Mono NF)
 - Download Scoop
 - Download PowerShell 7 or greater
@@ -29,3 +32,5 @@ Steps to follow for step a brand new os
 
 ## 1.1) TODO
 - add check for powershell 7 and vscode download
+- fira code nf download https://eng.m.fontke.com/font/61026051/download/
+- win cache cleanup https://thegeekpage.com/how-to-delete-the-font-cache-on-windows-10/
