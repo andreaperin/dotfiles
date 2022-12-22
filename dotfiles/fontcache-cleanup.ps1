@@ -4,7 +4,7 @@ Write-Output "Step 1 of 4: Stopping the Windows Font Cache Service"
 
 $svc = Get-Service fontcache
 
-Stop-Service fontcache
+Stop-Service fontcache -Force
 
 $svc.WaitForStatus('Stopped')
 
