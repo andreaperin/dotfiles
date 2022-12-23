@@ -86,10 +86,14 @@ cp -Path '..\Microsoft.PowerShell_profile.ps1' -Destination $PROFILE -Force
 echo "done"
 
 ## Installing Windows Termianal
-
-##TODO add check on existing terminal installed
-echo "Installing Windows Terminal with winget..."
-winget install -e --id Microsoft.WindowsTerminal
+echo "Checking Windows Terminal Installation"
+try {$null = wt --version} 
+catch [System.Management.Automation.CommandNotFoundException] {
+    Write-Host "Windows Terminal is not installed."
+    Write-Host "Downloading and installing Windows Terminal..."
+    winget install -e --id Microsoft.WindowsTerminal   
+}
+echo "Windows Terminal is already installed"
 echo "Coping Windows Terminal profile settings"
 cp -Path '..\settings.json' -Destination $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json -Force
 echo "done"
