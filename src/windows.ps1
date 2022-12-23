@@ -10,6 +10,7 @@ catch [System.Management.Automation.CommandNotFoundException] {
     exit
 }
 echo "Git is installed"
+[System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 $FIRACODE = (New-Object System.Drawing.Text.InstalledFontCollection).Families | findstr "FiraCode"
 if ( $FIRACODE -eq "FiraCode NF" )
 {
