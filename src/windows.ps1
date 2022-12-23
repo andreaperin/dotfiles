@@ -10,9 +10,10 @@ catch [System.Management.Automation.CommandNotFoundException] {
     exit
 }
 echo "Git is installed"
+
 [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
-$FIRACODE = (New-Object System.Drawing.Text.InstalledFontCollection).Families | findstr "FiraCode"
-if ( $FIRACODE -eq "FiraCode NF" )
+$FIRACODE=(New-Object System.Drawing.Text.InstalledFontCollection).Families | findstr "FiraCode"
+if ( $FIRACODE -eq 'FiraCode NF' )
 {
     echo "FiraCode NF is installed"
 }
@@ -20,8 +21,8 @@ else
 {
     echo "FiraCode is not installed"
     echo "Download and install FiraCode NF"
-    Start-Process "https://eng.m.fontke.com/font/61026051/download/"
-    exit
+    #Start-Process "https://eng.m.fontke.com/font/61026051/download/"
+    #exit
 }
 
 ## Install Powershell 7.*.*
@@ -37,29 +38,29 @@ else
 }
 
 ## Install VScode
-if(-not($env:TERM_PROGRAM -eq 'vscode')) 
-{
-    echo "Installing VSCode"
+echo "Checking VSCode Installation"
+try {$null = code --version} 
+catch [System.Management.Automation.CommandNotFoundException] {
+    Write-Host "Vscode is not installed."
+    Write-Host "Downloading and installing Vscode..."
     winget install -e --id Microsoft.VisualStudioCode
 }
-else
-{
-    echo "VSCode already installed"
-}
-
+echo "VScode is already installed"
 
 ## Installing scoop
-echo "installing Scoop Package Manager..."
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUse
-if ( Test-Path -Path $env:USERPROFILE\scoop)
-{ echo "scoop already installed" }
-else
-{ iex "& {$(irm get.scoop.sh)} -RunAsAdmin" }
+echo "Checking Scoop Installation"
+try {$null = scoop --version} 
+catch [System.Management.Automation.CommandNotFoundException] {
+    Write-Host "Scoop is not installed."
+    Write-Host "Downloading and installing Scoop..."
+    Set-ExecutionPolicy RemoteSigned -Scope CurrentUse
+    iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+}
+echo "Scoop is already installed"
 
 scoop install sudo
 sudo scoop install 7zip git openssh --global
 scoop install python
-scoop install filezilla
 
 ## Installing Choco
 echo "Installing Choco"
@@ -69,9 +70,11 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 
 echo "Installing Keypirinha"
 choco install keypirinha
+echo "Installing Filezilla"
+choco install filezilla
 
 
-## Installing Oh-My-Posh!
+# ## Installing Oh-My-Posh!
 echo "Installing oh-my-posh..."
 scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json
 echo "Installing PowerShell Modules and Importig PowerShell Profile settings..."
@@ -83,6 +86,8 @@ cp -Path '..\Microsoft.PowerShell_profile.ps1' -Destination $PROFILE -Force
 echo "done"
 
 ## Installing Windows Termianal
+
+##TODO add check on existing terminal installed
 echo "Installing Windows Terminal with winget..."
 winget install -e --id Microsoft.WindowsTerminal
 echo "Coping Windows Terminal profile settings"
