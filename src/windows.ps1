@@ -1,4 +1,5 @@
 #Requires -RunAsAdministrator
+#Requires -Version 7
 
 ## Prerequisites 
 echo "Checking Pre requisites (Git, FiraCode NF)"
@@ -100,3 +101,14 @@ echo "done"
 
 echo "If ligatures are missing in Windows Terminal remember to clean Windows Font Cache"
 Start-Process "https://thegeekpage.com/how-to-delete-the-font-cache-on-windows-10/"
+
+## Install Julia
+echo "Checking Julia Installation"
+try {$null = julia --version} 
+catch [System.Management.Automation.CommandNotFoundException] {
+    Write-Host "Julia is not installed."
+    Write-Host "Downloading and installing Julia..."
+    choco install julia
+}
+echo "julia is already installed $null"
+exit
