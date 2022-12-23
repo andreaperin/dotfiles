@@ -10,7 +10,7 @@ catch [System.Management.Automation.CommandNotFoundException] {
     exit
 }
 echo "Git is installed"
-$FIRACODE = (New-Object System.Drawing.Text.InstalledFontCollection).Families | grep "FiraCode"
+$FIRACODE = (New-Object System.Drawing.Text.InstalledFontCollection).Families | findstr "FiraCode"
 if ( $FIRACODE -eq "FiraCode NF" )
 {
     echo "FiraCode NF is installed"
@@ -59,6 +59,16 @@ scoop install sudo
 sudo scoop install 7zip git openssh --global
 scoop install python
 scoop install filezilla
+
+## Installing Choco
+echo "Installing Choco"
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+echo "Installing Keypirinha"
+choco install keypirinha
+
 
 ## Installing Oh-My-Posh!
 echo "Installing oh-my-posh..."

@@ -21,4 +21,4 @@ new-alias grep findstr
 function gitgraph {git log --graph --pretty="%C(yellow) %s"}
 function gitdates {git log --graph --pretty="%ad" --date=short}
 function githash {git log --graph --pretty="%C(bold blue)%h" --decorate --all}
-function updateall {scoop update && winget update --all && winget upgrade --all}
+function updateall {scoop update; winget update --all; winget upgrade --all; choco upgrade chocolatey; choco upgrade all}
