@@ -17,8 +17,8 @@ New-Alias ippub publicip
 function diskusage {Get-Volume -DriveLetter C}
 New-Alias Cusage diskusage
 New-Alias emptybin Clear-RecycleBin -Force
+new-alias grep findstr
 function gitgraph {git log --graph --pretty="%C(yellow) %s"}
 function gitdates {git log --graph --pretty="%ad" --date=short}
 function githash {git log --graph --pretty="%C(bold blue)%h" --decorate --all}
-
-scoop update
+function updateall {scoop update && winget update --all && winget upgrade --all}
