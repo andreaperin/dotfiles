@@ -14,4 +14,5 @@ Configure with ```./windows.ps1``` from inside ```src``` folder
 - Homebrew
 - oh-my-zsh
 - settings for iterm2
+- 
 ## 3) Linux-Ubuntu
