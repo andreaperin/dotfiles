@@ -8,7 +8,7 @@
     # ~/.vim: vim
     # ~/.vimrc: vim/vimrc
     ~/.zshrc: zsh/zshrc
-    ~/.gitcongig: git/gitconig
+    ~/.gitcongig: git/gitconfig
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
