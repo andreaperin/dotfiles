@@ -10,7 +10,7 @@ BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 ## Cleaning Default Trash
 sudo apt update -y && sudo apt upgrade -y
-sudo apt purge gnome-2048 aisleriot atomix gnome-chess five-or-more hitori iagno gnome-klotski lightsoff gnome-mahjongg gnome-mines gnome-nibbles quadrapassel four-in-a-row gnome-robots gnome-sudoku swell-foop tali gnome-taquin gnome-tetravex -y 
+# sudo apt purge gnome-2048 aisleriot atomix gnome-chess five-or-more hitori iagno gnome-klotski lightsoff gnome-mahjongg gnome-mines gnome-nibbles quadrapassel four-in-a-row gnome-robots gnome-sudoku swell-foop tali gnome-taquin gnome-tetravex -y 
 
 ## Installing Fira Code
 sudo add-apt-repository universe -y
@@ -36,8 +36,6 @@ if [ -d ~/.oh-my-zsh ]; then
     git submodule update --init --recursive "${DOTBOT_DIR}"
 
     "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
-    
-    source ~/.zshrc
 else
     echo ERROR: Oh-my-zsh needs to be installed. run: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     exit 1 # terminate and indicate error
