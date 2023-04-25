@@ -9,6 +9,11 @@ fi
 
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
+OS="`uname`"
+case $OS in
+    'Darwin') autoload -Uz compinit && compinit;;
+esac
+
 antidote load
 
 SPACESHIP_PROMPT_ORDER=(
@@ -106,4 +111,4 @@ bindkey	"^[[3~"		delete-char
 bindkey	"^[3;5~"	delete-char
 
 # reload configurations
-alias reload="exec ${SHELL} -l"
+alias reload="exec ${SHELL} -l"t
