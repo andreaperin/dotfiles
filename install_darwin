@@ -5,12 +5,19 @@ set -e
 ZSH_CONFIG="darwin/zsh.conf.yaml"
 VIM_CONFIG="darwin/vim.conf.yaml"
 GIT_CONFIG="darwin/git.conf.yaml"
-ROFI_CONFIG="darwin/git.conf.yaml"
 
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+read -p "Do you want to install dependences (zsh, Vim, FiraCode)? (y/n)" choice
+case "$choice" in 
+    y|Y ) chmod +x ./darwin/dependences.sh && ./darwin/dependences.sh;;
+    n|N ) echo "Skipping dependences installation";;
+    * ) echo "invalid";;
+esac
+
 
 cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
