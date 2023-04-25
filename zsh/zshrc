@@ -9,10 +9,7 @@ fi
 
 source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
-OS="`uname`"
-case $OS in
-    'Darwin') autoload -Uz compinit && compinit;;
-esac
+autoload -Uz compinit && compinit
 
 antidote load
 
