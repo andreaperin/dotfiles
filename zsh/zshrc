@@ -2,59 +2,32 @@
 
 umask 022
 
-export ZPLUG_HOME=${HOME}/.zplug
 # install zplug if not yet installed
-if [[ ! -d ~/.zplug ]]; then
-    git clone https://github.com/zplug/zplug ~/.zplug
-    source ~/.zplug/init.zsh && zplug update --self
+if [[ ! -d ${ZDOTDIR:-~}/.antidote ]]; then
+    git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 fi
 
-source ~/.zplug/init.zsh
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
-zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
-zplug "chrissicool/zsh-256color"
-zplug "seebi/dircolors-solarized"
-
-export NVM_LAZY_LOAD=true
-zplug "lukechilds/zsh-nvm"
-
-zplug "voronkovich/gitignore.plugin.zsh"
-zplug "plugins/git", from:oh-my-zsh
-
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-
-if ! zplug check; then
-    zplug install
-fi
-
-zplug load
+antidote load
 
 SPACESHIP_PROMPT_ORDER=(
-  time          # Time stamps section
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-#   maven         # Maven section
-  node          # Node.js section
-  golang        # Go section
-  julia         # Julia section
-  docker        # Docker section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
-  exec_time     # Execution time
-  line_sep      # Line break
-  battery       # Battery level and status
-#   vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
+ user          # Username section
+ dir           # Current directory section
+ host          # Hostname section
+ git           # Git section (git_branch + git_status)
+ node          # Node.js section
+ golang        # Go section
+ julia         # Julia section
+ docker        # Docker section
+ venv          # virtualenv section
+ exec_time     # Execution time
+ line_sep      # Line break
+ battery       # Battery level and status
+ jobs          # Background jobs indicator
+ exit_code     # Exit code section
+ char          # Prompt character
 )
-
-# load dircolors
-eval $(dircolors ${ZPLUG_HOME}/repos/seebi/dircolors-solarized/dircolors.256dark)
 
 ## history file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
@@ -69,6 +42,8 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history # share command history data
+
+autoload -Uz promptinit && promptinit && prompt spaceship
 
 # List directory contents
 alias ls='ls --color=auto'
@@ -130,7 +105,14 @@ weather() {
 bindkey	"^[[3~"		delete-char
 bindkey	"^[3;5~"	delete-char
 
-export JAVA_HOME=/usr/lib/openjdk-11
-
 # reload configurations
 alias reload="exec ${SHELL} -l"
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/behrensd/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<

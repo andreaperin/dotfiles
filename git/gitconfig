@@ -1,3 +1,7 @@
+[user]
+	name = Andrea Perin
+    email = andrea.perin1992@gmail.com
+
 [alias]
     a = add
     aa = add --all
@@ -55,7 +59,7 @@
 
 [core]
     excludesfile = ./.gitignore_global
-    editor = nano
+    editor = vim
 
 [color]
     ui = auto

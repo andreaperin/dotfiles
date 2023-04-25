@@ -2,41 +2,66 @@
 
 set -e
 
-CONFIG="install.conf.yaml"
+ZSH_CONFIG="zsh.conf.yaml"
+VIM_CONFIG="vim.conf.yaml"
+GIT_CONFIG="git.conf.yaml"
+ROFI_CONFIG="git.conf.yaml"
+
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-## Cleaning Default Trash
-sudo apt update -y && sudo apt upgrade -y
-# sudo apt purge gnome-2048 aisleriot atomix gnome-chess five-or-more hitori iagno gnome-klotski lightsoff gnome-mahjongg gnome-mines gnome-nibbles quadrapassel four-in-a-row gnome-robots gnome-sudoku swell-foop tali gnome-taquin gnome-tetravex -y 
+cd "${BASEDIR}"
+git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
+git submodule update --init --recursive "${DOTBOT_DIR}"
 
-## Installing Fira Code
-sudo add-apt-repository universe -y
-sudo apt install fonts-firacode -y
 
-## Installing Rofi
-sudo apt install rofi -y
+read -p "Do you want to remove default games? (y/n)" choice
+case "$choice" in 
+    y|Y ) chmod +x ./cleanup.sh && ./cleanup.sh;;
+    n|N ) echo "Skipping default games removal";;
+    * ) echo "invalid";;
+esac
 
-# Installing Zsh
-sudo apt install zsh -y
+read -p "Do you want to install dependences (zsh, Vim, Rofi, FiraCode)? (y/n)" choice
+case "$choice" in 
+    y|Y ) chmod +x ./dependences.sh && ./dependences.sh;;
+    n|N ) echo "Skipping dependences installation";;
+    * ) echo "invalid";;
+esac
 
-# Disable Hybernate and Suspend
-sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+read -p "Do you want to disable Hibernation and Sleep? (y/n)" choice
+case "$choice" in 
+    y|Y ) chmod +x ./disabling.sh && ./disabling.sh;;
+    n|N ) echo "Skipping Hibernate and Suspension disable";;
+    * ) echo "invalid";;
+esac
 
-sudo apt autoremove -y
+read -p "Do you want to import Zsh configuration? (y/n)" choice
+case "$choice" in
+    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ZSH_CONFIG}" "${@}";;
+    n|N ) echo "Skipping zsh profile import";;
+    * ) echo "invalid";;
+esac
 
-if [ -d ~/.oh-my-zsh ]; then
+read -p "Do you want to import Vim configuration? (y/n) " choice
+case "$choice" in
+    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${VIM_CONFIG}" "${@}";;
+    n|N ) echo "Skipping vim profile import";;
+    * ) echo "invalid";;
+esac
 
-    sudo apt autoremove
+read -p "Do you want to import Git configuration? (y/n) " choice
+case "$choice" in
+    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${GIT_CONFIG}" "${@}";;
+    n|N ) echo "Skipping git profile import";;
+    * ) echo "invalid";;
+esac
 
-    cd "${BASEDIR}"
-    git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-    git submodule update --init --recursive "${DOTBOT_DIR}"
-
-    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
-else
-    echo ERROR: Oh-my-zsh needs to be installed. run: sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    exit 1 # terminate and indicate error
-fi
+read -p "Do you want to import ROFI configuration? (y/n) " choice
+case "$choice" in
+    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ROFI_CONFIG}" "${@}";;
+    n|N ) echo "Skipping ROFI profile import";;
+    * ) echo "invalid";;
+esac
