@@ -92,6 +92,16 @@ if [ -f /etc/os-release ]; then
     esac
 fi
 
+if uname='Darwin'; then
+    alias update='brew update; brew upgrade'
+    install() {
+        eval 'brew install ${1}'
+    }
+    remove() {
+        eval 'brew remove ${1}'
+    }
+fi
+
 # check weather
 weather() {
     city="$1"
