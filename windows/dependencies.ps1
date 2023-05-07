@@ -1,10 +1,15 @@
 ### Install PowerShell Modules
 Write-Host "Installing PowerShell Modules..." -ForegroundColor "Yellow"
+
+
+Install-PackageProvider -Name NuGet
+
 winget install JanDeDobbeleer.OhMyPosh -s winget
 
 # dev tools and frameworks
 winget install Microsoft.PowerShell                      --silent --accept-package-agreements
 winget install Vim.Vim                                   --silent --accept-package-agreements
+winget install -e --id Microsoft.PowerToys               --silent --accept-package-agreements
 
 Refresh-Environment
 
