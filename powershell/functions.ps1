@@ -20,8 +20,6 @@ function sudo() {
 function System-Update() {
     Install-WindowsUpdate -IgnoreUserInput -IgnoreReboot -AcceptAll
     Update-Module
-    npm install npm -g
-    npm update -g
     sudo choco upgrade all -y
     winget upgrade --all
 }
@@ -52,111 +50,6 @@ function Empty-RecycleBin {
     $RecBin.Items() | %{Remove-Item $_.Path -Recurse -Confirm:$false}
 }
 
-# Sound Volume
-function Get-SoundVolume {
-  <#
-  .SYNOPSIS
-  Get audio output volume.
-
-  .DESCRIPTION
-  The Get-SoundVolume cmdlet gets the current master volume of the default audio output device. The returned value is an integer between 0 and 100.
-
-  .LINK
-  Set-SoundVolume
-
-  .LINK
-  Set-SoundMute
-
-  .LINK
-  Set-SoundUnmute
-
-  .LINK
-  https://github.com/jayharris/dotfiles-windows/
-  #>
-  [math]::Round([Audio]::Volume * 100)
-}
-function Set-SoundVolume([Parameter(mandatory=$true)][Int32] $Volume) {
-  <#
-  .SYNOPSIS
-  Set audio output volume.
-
-  .DESCRIPTION
-  The Set-SoundVolume cmdlet sets the current master volume of the default audio output device to a value between 0 and 100.
-
-  .PARAMETER Volume
-  An integer between 0 and 100.
-
-  .EXAMPLE
-  Set-SoundVolume 65
-  Sets the master volume to 65%.
-
-  .EXAMPLE
-  Set-SoundVolume -Volume 100
-  Sets the master volume to a maximum 100%.
-
-  .LINK
-  Get-SoundVolume
-
-  .LINK
-  Set-SoundMute
-
-  .LINK
-  Set-SoundUnmute
-
-  .LINK
-  https://github.com/jayharris/dotfiles-windows/
-  #>
-  [Audio]::Volume = ($Volume / 100)
-}
-function Set-SoundMute {
-  <#
-  .SYNOPSIS
-  Mote audio output.
-
-  .DESCRIPTION
-  The Set-SoundMute cmdlet mutes the default audio output device.
-
-  .LINK
-  Get-SoundVolume
-
-  .LINK
-  Set-SoundVolume
-
-  .LINK
-  Set-SoundUnmute
-
-  .LINK
-  https://github.com/jayharris/dotfiles-windows/
-  #>
-   [Audio]::Mute = $true
-}
-function Set-SoundUnmute {
-  <#
-  .SYNOPSIS
-  Unmote audio output.
-
-  .DESCRIPTION
-  The Set-SoundUnmute cmdlet unmutes the default audio output device.
-
-  .LINK
-  Get-SoundVolume
-
-  .LINK
-  Set-SoundVolume
-
-  .LINK
-  Set-SoundMute
-
-  .LINK
-  https://github.com/jayharris/dotfiles-windows/
-  #>
-   [Audio]::Mute = $false
-}
-
-
-### File System functions
-### ----------------------------
-# Create a new directory and enter it
 function CreateAndSet-Directory([String] $path) { New-Item $path -ItemType Directory -ErrorAction SilentlyContinue; Set-Location $path}
 
 # Determine size of a file or total size of a directory
@@ -194,13 +87,6 @@ function Refresh-Environment {
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 }
 
-# Set a permanent Environment variable, and reload it into $env
-function Set-Environment([String] $variable, [String] $value) {
-    Set-ItemProperty "HKCU:\Environment" $variable $value
-    # Manually setting Registry entry. SetEnvironmentVariable is too slow because of blocking HWND_BROADCAST
-    #[System.Environment]::SetEnvironmentVariable("$variable", "$value","User")
-    Invoke-Expression "`$env:${variable} = `"$value`""
-}
 
 # Add a folder to $env:Path
 function Prepend-EnvPath([String]$path) { $env:PATH = $env:PATH + ";$path" }
@@ -224,21 +110,6 @@ function Convert-ToDiskSize {
     }
 }
 
-# Start IIS Express Server with an optional path and port
-function Start-IISExpress {
-    [CmdletBinding()]
-    param (
-        [String] $path = (Get-Location).Path,
-        [Int32]  $port = 3000
-    )
-
-    if ((Test-Path "${env:ProgramFiles}\IIS Express\iisexpress.exe") -or (Test-Path "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe")) {
-        $iisExpress = Resolve-Path "${env:ProgramFiles}\IIS Express\iisexpress.exe" -ErrorAction SilentlyContinue
-        if ($iisExpress -eq $null) { $iisExpress = Get-Item "${env:ProgramFiles(x86)}\IIS Express\iisexpress.exe" }
-
-        & $iisExpress @("/path:${path}") /port:$port
-    } else { Write-Warning "Unable to find iisexpress.exe"}
-}
 
 # Extract a .zip file
 function Unzip-File {
