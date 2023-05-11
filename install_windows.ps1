@@ -1,22 +1,32 @@
+$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
 Write-Host "This script needs to be run from a powershell5 elevated terminal (NO PWSH7)." -ForegroundColor "Yellow"
 
 $dependenciesPATH = "windows\dependencies.ps1"
 $settingsPATH = "windows\initial_settings.ps1"
 
-# Check to see if we are currently running "as Administrator"
-if (!(Verify-Elevated)) {
-   $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
-   $newProcess.Arguments = $myInvocation.MyCommand.Definition;
-   $newProcess.Verb = "runas";
-   [System.Diagnostics.Process]::Start($newProcess);
-
-   exit
-}
-
-
-. $dependenciesPATH
+###
+# . $dependenciesPATH
 # . $settingsPATH
 
-## TODO use dotbot for coping all powershell folder into powershell windows location
-## Adjust the config.yaml in windows folder to match the actual location after win-get installation
+$CONFIG = "install.conf.yaml"
+$DOTBOT_DIR = "dotbot"
+
+$DOTBOT_BIN = "bin/dotbot"
+$BASEDIR = $PSScriptRoot
+
+Set-Location $BASEDIR
+git -C $DOTBOT_DIR submodule sync --quiet --recursive
+git submodule update --init --recursive $DOTBOT_DIR
+
+foreach ($PYTHON in ('python', 'python3')) {
+    # Python redirects to Microsoft Store in Windows 10 when not installed
+    if (& { $ErrorActionPreference = "SilentlyContinue"
+            ![string]::IsNullOrEmpty((&$PYTHON -V))
+            $ErrorActionPreference = "Stop" }) {
+        &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $CONFIG $Args
+        return
+    }
+}
+Write-Error "Error: Cannot find Python."
