@@ -14,21 +14,22 @@ autoload -Uz compinit && compinit
 antidote load
 
 SPACESHIP_PROMPT_ORDER=(
- user          # Username section
- dir           # Current directory section
- host          # Hostname section
- git           # Git section (git_branch + git_status)
- node          # Node.js section
- golang        # Go section
- julia         # Julia section
- docker        # Docker section
- venv          # virtualenv section
- exec_time     # Execution time
- line_sep      # Line break
- battery       # Battery level and status
- jobs          # Background jobs indicator
- exit_code     # Exit code section
- char          # Prompt character
+    user      # Username section
+    dir       # Current directory section
+    host      # Hostname section
+    git       # Git section (git_branch + git_status)
+    node      # Node.js section
+    golang    # Go section
+    julia     # Julia section
+    docker    # Docker section
+    venv      # virtualenv section
+    conda     # conda env section
+    exec_time # Execution time
+    line_sep  # Line break
+    battery   # Battery level and status
+    jobs      # Background jobs indicator
+    exit_code # Exit code section
+    char      # Prompt character
 )
 
 ## history file configuration
@@ -43,7 +44,7 @@ setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
-setopt share_history # share command history data
+setopt share_history          # share command history data
 
 autoload -Uz promptinit && promptinit && prompt spaceship
 
@@ -60,35 +61,35 @@ if [ -f /etc/os-release ]; then
 
     case $NAME in
 
-        'Solus')
-            alias update='sudo eopkg up'
-            install() {
-                eval 'sudo eopkg it ${1}'
-            }
-            remove() {
-                eval 'sudo eopkg remove ${1}'
-            }
-            ;;
+    'Solus')
+        alias update='sudo eopkg up'
+        install() {
+            eval 'sudo eopkg it ${1}'
+        }
+        remove() {
+            eval 'sudo eopkg remove ${1}'
+        }
+        ;;
 
-        'Ubuntu')
-            alias update='sudo apt update; sudo apt upgrade'
-            install() {
-                eval 'sudo apt install ${1}'
-            }
-            remove() {
-                eval 'sudo apt remove ${1}'
-            }
-            ;;
+    'Ubuntu')
+        alias update='sudo apt update; sudo apt upgrade'
+        install() {
+            eval 'sudo apt install ${1}'
+        }
+        remove() {
+            eval 'sudo apt remove ${1}'
+        }
+        ;;
 
-        'CentOS Linux')
-            alias update='sudo yum update'
-            install() {
-                eval 'sudo yum install ${1}'
-            }
-            remove() {
-                eval 'sudo yum remove ${1}'
-            }
-            ;;
+    'CentOS Linux')
+        alias update='sudo yum update'
+        install() {
+            eval 'sudo yum install ${1}'
+        }
+        remove() {
+            eval 'sudo yum remove ${1}'
+        }
+        ;;
     esac
 fi
 
@@ -114,8 +115,8 @@ weather() {
 }
 
 # fix delete key
-bindkey	"^[[3~"		delete-char
-bindkey	"^[3;5~"	delete-char
+bindkey "^[[3~" delete-char
+bindkey "^[3;5~" delete-char
 
 # reload configurations
-alias reload="exec ${SHELL} -l"t
+alias reload="source ~/.zshrc"
