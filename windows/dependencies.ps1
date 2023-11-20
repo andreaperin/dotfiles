@@ -1,8 +1,9 @@
 ### Install PowerShell Modules
 Write-Host "Installing PowerShell Modules..." -ForegroundColor "Yellow"
 
+ [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-Install-PackageProvider -Name NuGet
+# Install-PackageProvider -Name NuGet
 
 winget install JanDeDobbeleer.OhMyPosh -s winget
 
