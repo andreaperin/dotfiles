@@ -5,7 +5,7 @@ Push-Location (Split-Path -parent $profile)
 "components-shell" | Where-Object {Test-Path "$_.ps1"} | ForEach-Object -process {Invoke-Expression ". .\$_.ps1"}
 Pop-Location
 
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\spaceship.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "$HOME/Documents/WindowsPowerShell/theme.omp.json" | Invoke-Expression
 Import-Module PSReadLine | Out-Null
 Import-Module -Name Terminal-Icons | Out-Null
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete

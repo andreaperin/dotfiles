@@ -18,6 +18,7 @@
     ~/Documents/WindowsPowerShell/functions.ps1: powershell/functions.ps1
     ~/Documents/WindowsPowerShell/profile.ps1: powershell/profile.ps1
     ~/Documents/WindowsPowerShell/MIcrosoft.PowerShell_profile.ps1: powershell/Microsoft.PowerShell_profile.ps1
-    
+    ~/Documents/WindowsPowerShell/theme.omp.json: powershell/.theme.omp.json
+
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
