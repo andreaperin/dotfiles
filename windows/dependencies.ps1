@@ -11,7 +11,6 @@ winget install Microsoft.PowerShell                      --silent --accept-packa
 
 winget install -e --id Microsoft.PowerToys               --silent --accept-package-agreements
 
-oh-my-posh font install
 Install-Module Posh-Git -Scope CurrentUser -Force
 Install-Module PSWindowsUpdate -Scope CurrentUser -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery

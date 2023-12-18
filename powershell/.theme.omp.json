@@ -39,21 +39,28 @@
         },
         {
           "type": "julia",
-          "style": "powerline",
           "powerline_symbol": "",
-          "foreground": "#f3eeee",
-          "background": "#ba40d8",
-          "template": "  {{ .Full }} "
+          "foreground": "#f10ee6",
+          "template": "  {{ .Full }} ",
+          "properties": {
+            "missing_command_text": "error",
+            "display_version": true,
+            "display_error": true,
+            "display_mode": "always",
+            "home_enabled": true,
+            "prefix": "<#ffffff>via</> \uE624 "
+          }
         },
         {
           "type": "python",
-          "style": "powerline",
           "powerline_symbol": "\uE0B0",
-          "foreground": "#e9e8f3",
-          "background": "#29137a",
+          "foreground": "#ffd904",
           "template": " \uE235 {{ .Full }} {{ if .Venv }}{{ .Venv }}{{ end }}",
           "properties": {
-            "fetch_virtual_env": true
+            "home_enabled": true,
+            "fetch_virtual_env": true,
+            "display_mode": "always",
+            "display_virtual_env": true
           }
         }
       ]
