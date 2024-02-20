@@ -1,27 +1,3 @@
-# Easier Navigation: .., ..., ...., ....., and ~
-${function:~} = { Set-Location ~ }
-# PoSh won't allow ${function:..} because of an invalid path error, so...
-${function:Set-ParentLocation} = { Set-Location .. }; Set-Alias ".." Set-ParentLocation
-${function:...} = { Set-Location ..\.. }
-${function:....} = { Set-Location ..\..\.. }
-${function:.....} = { Set-Location ..\..\..\.. }
-${function:......} = { Set-Location ..\..\..\..\.. }
-
-# Navigation Shortcuts
-${function:drop} = { Set-Location ~\Documents\Dropbox }
-${function:dt} = { Set-Location ~\Desktop }
-${function:docs} = { Set-Location ~\Documents }
-${function:dl} = { Set-Location ~\Downloads }
-
-# Missing Bash aliases
-Set-Alias time Measure-Command
-
-# Correct PowerShell Aliases if tools are available (aliases win if set)
-# WGet: Use `wget.exe` if available
-if (Get-Command wget.exe -ErrorAction SilentlyContinue | Test-Path) {
-  rm alias:wget -ErrorAction SilentlyContinue
-}
-
 # Directory Listing: Use `ls.exe` if available
 if (Get-Command ls.exe -ErrorAction SilentlyContinue | Test-Path) {
     rm alias:ls -ErrorAction SilentlyContinue
@@ -60,12 +36,6 @@ Set-Alias fs Get-DiskUsage
 
 # Empty the Recycle Bin on all drives
 Set-Alias emptytrash Empty-RecycleBin
-
-# Cleanup old files all drives
-Set-Alias cleandisks Clean-Disks
-
-# Reload the shell
-Set-Alias reload Reload-Powershell
 
 New-Alias iploc localip
 New-Alias ippub publicip

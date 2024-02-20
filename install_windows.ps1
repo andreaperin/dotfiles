@@ -15,7 +15,7 @@ $BASEDIR=$PSScriptRoot
 $dependenciesPATH="windows\dependencies.ps1"
 $settingsPATH="windows\initial_settings.ps1"
 
-$ud1 = Read-Host "Do you want to install all dependecies Nuget, Choco, OhMyPosh, Powershell, vim ? [y] yes, [n] no "
+$ud1 = Read-Host "Do you want to install all dependecies OhMyPosh, Powershell, vim ? [y] yes, [n] no "
 if ($ud1 -eq 'y')
 { 
     . $dependenciesPATH
@@ -42,10 +42,6 @@ foreach ($PYTHON in ('python', 'python3')) {
     if (& { $ErrorActionPreference = "SilentlyContinue"
             ![string]::IsNullOrEmpty((&$PYTHON -V))
             $ErrorActionPreference = "Stop" }) {
-
-        # &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $VIM_CONFIG $Args
-        
-        # &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $GIT_CONFIG $Args
 
         &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $PWSH_CONFIG $Args
 

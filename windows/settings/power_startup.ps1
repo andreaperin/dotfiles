@@ -11,7 +11,3 @@ powercfg /hibernate off
 # Power: Disable Standby
 powercfg /change /standby-timeout-ac 0
 powercfg /change /disk-timeout-ac 0
-
-# SSD: Disable SuperFetch: Enable: 1, Disable: 0
-Set-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" "EnableSuperfetch" 0
-

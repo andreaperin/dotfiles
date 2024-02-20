@@ -3,22 +3,35 @@ Write-Host "Installing PowerShell Modules..." -ForegroundColor "Yellow"
 
  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Install-PackageProvider -Name NuGet
+winget install JanDeDobbeleer.OhMyPosh -s winget --silent --accept-package-agreements
+winget install -e --id Microsoft.PowerToys --silent --accept-package-agreements
+winget install -e --id vim.vim --silent --accept-package-agreements
+winget install --id Microsoft.Powershell --source winget --silent --accept-package-agreements
 
-winget install JanDeDobbeleer.OhMyPosh -s winget
 
-winget install Microsoft.PowerShell                      --silent --accept-package-agreements
-
-winget install -e --id Microsoft.PowerToys               --silent --accept-package-agreements
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 Install-Module Posh-Git -Scope CurrentUser -Force
 Install-Module PSWindowsUpdate -Scope CurrentUser -Force
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Install-Module TabExpansionPlusPlus -Scope CurrentUser -Force -AllowClobber
+Install-Module git-aliases -Scope CurrentUser -AllowClobber
 
-Write-Host "Installing Vim through Choco..." -ForegroundColor "Yellow"
 
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+function Refresh-Environment {
+    $locations = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment',
+                 'HKCU:\Environment'
 
-choco install vim
-refreshenv
+    $locations | ForEach-Object {
+        $k = Get-Item $_
+        $k.GetValueNames() | ForEach-Object {
+            $name  = $_
+            $value = $k.GetValue($_)
+            Set-Item -Path Env:\$name -Value $value
+        }
+    }
+
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+}
+
+Refresh-Environment

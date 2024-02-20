@@ -6,19 +6,10 @@
 
 - link:
     ~/Documents/PowerShell/aliases.ps1: powershell/aliases.ps1
-    ~/Documents/PowerShell/components-shell.ps1: powershell/components-shell.ps1
-    ~/Documents/PowerShell/components.ps1: powershell/components.ps1
     ~/Documents/PowerShell/functions.ps1: powershell/functions.ps1
     ~/Documents/PowerShell/profile.ps1: powershell/profile.ps1
-    ~/Documents/PowerShell/MIcrosoft.PowerShell_profile.ps1: powershell/Microsoft.PowerShell_profile.ps1
-    
-    ~/Documents/WindowsPowerShell/aliases.ps1: powershell/aliases.ps1
-    ~/Documents/WindowsPowerShell/components-shell.ps1: powershell/components-shell.ps1
-    ~/Documents/WindowsPowerShell/components.ps1: powershell/components.ps1
-    ~/Documents/WindowsPowerShell/functions.ps1: powershell/functions.ps1
-    ~/Documents/WindowsPowerShell/profile.ps1: powershell/profile.ps1
-    ~/Documents/WindowsPowerShell/MIcrosoft.PowerShell_profile.ps1: powershell/Microsoft.PowerShell_profile.ps1
-    ~/Documents/WindowsPowerShell/theme.omp.json: powershell/.theme.omp.json
+    ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1: powershell/Microsoft.PowerShell_profile.ps1
+    ~/Documents/PowerShell/theme.omp.json: powershell/.theme.omp.json
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
