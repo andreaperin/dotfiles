@@ -1,0 +1,15 @@
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# Disable the AWS module.
+[aws]
+disabled = true
+
+# Disable the GCP module.
+[gcloud]
+disabled = true
+
+[hostname]
+ssh_only = true
+format =  "[$hostname](bold red) [❯](bold green) "

@@ -12,6 +12,12 @@ sudo apt install zsh -y
 # Installing Vim
 sudo apt install vim -y
 
+# Installing Alacritty
+sudo apt install alacritty -y
+
+# Installing starship
+sudo apt install starship -y
+
 sudo apt autoremove -y
 
 echo "Dependencies succesfully installed"

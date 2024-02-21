@@ -13,25 +13,6 @@ autoload -Uz compinit && compinit
 
 antidote load
 
-SPACESHIP_PROMPT_ORDER=(
-    user      # Username section
-    dir       # Current directory section
-    host      # Hostname section
-    git       # Git section (git_branch + git_status)
-    node      # Node.js section
-    golang    # Go section
-    julia     # Julia section
-    docker    # Docker section
-    venv      # virtualenv section
-    conda     # conda env section
-    exec_time # Execution time
-    line_sep  # Line break
-    battery   # Battery level and status
-    jobs      # Background jobs indicator
-    exit_code # Exit code section
-    char      # Prompt character
-)
-
 ## history file configuration
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
@@ -46,52 +27,12 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
 
-autoload -Uz promptinit && promptinit && prompt spaceship
-
 # List directory contents
 alias ls='ls --color=auto'
 alias lsa='ls -lah'
 alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
-
-# distro aliases
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-
-    case $NAME in
-
-    'Solus')
-        alias update='sudo eopkg up'
-        install() {
-            eval 'sudo eopkg it ${1}'
-        }
-        remove() {
-            eval 'sudo eopkg remove ${1}'
-        }
-        ;;
-
-    'Ubuntu')
-        alias update='sudo apt update; sudo apt upgrade'
-        install() {
-            eval 'sudo apt install ${1}'
-        }
-        remove() {
-            eval 'sudo apt remove ${1}'
-        }
-        ;;
-
-    'CentOS Linux')
-        alias update='sudo yum update'
-        install() {
-            eval 'sudo yum install ${1}'
-        }
-        remove() {
-            eval 'sudo yum remove ${1}'
-        }
-        ;;
-    esac
-fi
 
 if uname='Darwin'; then
     alias update='brew update; brew upgrade'
@@ -120,3 +61,5 @@ bindkey "^[3;5~" delete-char
 
 # reload configurations
 alias reload="source ~/.zshrc"
+
+eval "$(starship init zsh)"

@@ -5,8 +5,11 @@
 - clean: ['~']
 
 - link:
-    ~/.zsh_plugins.txt: zsh/.zsh_plugins.txt
-    ~/.zshrc: zsh/zshrc
+    ~/.zsh_plugins.txt: zsh_darwin/.zsh_plugins.txt
+    ~/.zshrc: zsh_darwin/zshrc
+    ~/.config/alacritty/alacritty.toml: alacritty/alacritty.toml
+    ~/.config/starship.toml: starship/starship.toml
+
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
