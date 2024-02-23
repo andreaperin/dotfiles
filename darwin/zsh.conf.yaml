@@ -9,7 +9,8 @@
     ~/.zshrc: zsh_darwin/zshrc
     ~/.config/alacritty/alacritty.toml: alacritty/alacritty.toml
     ~/.config/starship.toml: starship/starship.toml
-
+    ~/.zsh/aliases: zsh_darwin/zsh/aliases 
+    ~/.zsh/functions: zsh_darwin/zsh/functions 
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

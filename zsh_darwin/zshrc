@@ -1,4 +1,6 @@
 # ~/.zshrc
+export UPDATE_ZSH_DAYS=1
+export EDITOR="vim"
 
 umask 022
 
@@ -30,39 +32,25 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
 
+source $HOME/.zsh/aliases
+source $HOME/.zsh/functions
+
+# ZSH Options
+setopt auto_cd       # cd by typing the dir name if its not a command name
+setopt correct_all   # autocorrect commandsl
+setopt auto_list     # automatically list choices on ambiguous completion
+setopt auto_menu     # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
+
 # FZF CONFIGURATION
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND="fd . --maxdepth 1"
+export FZF_DEFAULT_COMMAND="fd . --maxdepth 4"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_DEFAULT_OPTS='--multi --height=80%  --layout=reverse-list --border=double --info=inline --pointer='→''
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-## ALL Aliases
-## FZF
-alias pf="fd . --maxdepth 1 --type f | fzf --multi --height=80% --border=sharp  --preview='bat --color=always --style=numbers {}' --preview-window='45%,border-sharp' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-alias pd="fd . --maxdepth 1 --type d | fzf --multi --height=80% --border=sharp --preview='tree -C {}' --preview-window='45%,border-sharp' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-# reload
-alias reload="source ~/.zshrc"
-# List directory contents
-alias ls='ls --color=auto'
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
-## Brew
-alias update='brew update; brew upgrade'
-# check weather
-weather() {
-    city="$1"
-
-    if [ -z "$city" ]; then
-        city="Hannover,Germany"
-    fi
-
-    eval "curl http://wttr.in/${city}"
-}
-# reload configurations
-alias reload="source ~/.zshrc"
+# Update hombrew once a week
+export HOMEBREW_AUTO_UPDATE_SECS=600000
 
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
