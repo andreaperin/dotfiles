@@ -5,11 +5,13 @@
 - clean: ['~']
 
 - link:
-    ~/.zsh_plugins.txt: zsh_linux/.zsh_plugins.txt
-    ~/.zshrc: zsh_linux/zshrc
+    ~/.zsh_plugins.txt: zsh/.zsh_plugins.txt
+    ~/.zshrc: zsh/zshrc_linux
     ~/.config/alacritty/alacritty.toml: alacritty/alacritty.toml
     ~/.config/starship.toml: starship/starship.toml
-
-
+    ~/.zsh/aliases: zsh/zsh/aliases 
+    ~/.zsh/functions: zsh/zsh/functions
+    ~/.tmux.conf: zsh/tmux/tmux.conf
+     
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
