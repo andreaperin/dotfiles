@@ -25,4 +25,10 @@ $(brew --prefix)/opt/fzf/install
 # Installing zoxide
 brew install zoxide
 
+# Installing tmux
+brew install tmux
+
+# Installing lazygit
+brew install jesseduffield/lazygit/lazygit
+
 echo "Dependencies succesfully installed"
