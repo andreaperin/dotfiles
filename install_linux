@@ -8,7 +8,6 @@ GIT_CONFIG="linux-gnu/git.conf.yaml"
 ROFI_CONFIG="linux-gnu/git.conf.yaml"
 LATEX_CONFIG="linux-gnu/latex.conf.yaml"
 
-
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
@@ -18,59 +17,58 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-
 read -p "Do you want to remove default games? (y/n)" choice
-case "$choice" in 
-    y|Y ) chmod +x ./linux-gnu/cleanup.sh && ./linux-gnu/cleanup.sh;;
-    n|N ) echo "Skipping default games removal";;
-    * ) echo "invalid";;
+case "$choice" in
+y | Y) chmod +x ./linux-gnu/cleanup.sh && ./linux-gnu/cleanup.sh ;;
+n | N) echo "Skipping default games removal" ;;
+*) echo "invalid" ;;
 esac
 
-read -p "Do you want to install dependences (zsh, Vim, Rofi, FiraCode)? (y/n)" choice
-case "$choice" in 
-    y|Y ) chmod +x ./linux-gnu/dependences.sh && ./linux-gnu/dependences.sh;;
-    n|N ) echo "Skipping dependences installation";;
-    * ) echo "invalid";;
+read -p "Do you want to install dependences (zsh, Vim, FiraCode, alacritty, tmux, fzf, zoxide)? (y/n)" choice
+case "$choice" in
+y | Y) chmod +x ./linux-gnu/dependences.sh && ./linux-gnu/dependences.sh ;;
+n | N) echo "Skipping dependences installation" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to disable Hibernation and Sleep? (y/n)" choice
-case "$choice" in 
-    y|Y ) chmod +x ./linux-gnu/disabling.sh && ./linux-gnu/disabling.sh;;
-    n|N ) echo "Skipping Hibernate and Suspension disable";;
-    * ) echo "invalid";;
+case "$choice" in
+y | Y) chmod +x ./linux-gnu/disabling.sh && ./linux-gnu/disabling.sh ;;
+n | N) echo "Skipping Hibernate and Suspension disable" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to import Zsh configuration? (y/n)" choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ZSH_CONFIG}" "${@}";;
-    n|N ) echo "Skipping zsh profile import";;
-    * ) echo "invalid";;
+y | Y) mkdir -p ~/.zsh && mkdir -p ~/.config/alacritty && "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ZSH_CONFIG}" "${@}" ;;
+n | N) echo "Skipping zsh profile import" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to import Vim configuration? (y/n) " choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${VIM_CONFIG}" "${@}";;
-    n|N ) echo "Skipping vim profile import";;
-    * ) echo "invalid";;
+y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${VIM_CONFIG}" "${@}" ;;
+n | N) echo "Skipping vim profile import" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to import Git configuration? (y/n) " choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${GIT_CONFIG}" "${@}";;
-    n|N ) echo "Skipping git profile import";;
-    * ) echo "invalid";;
+y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${GIT_CONFIG}" "${@}" ;;
+n | N) echo "Skipping git profile import" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to import ROFI configuration? (y/n) " choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ROFI_CONFIG}" "${@}";;
-    n|N ) echo "Skipping ROFI profile import";;
-    * ) echo "invalid";;
+y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ROFI_CONFIG}" "${@}" ;;
+n | N) echo "Skipping ROFI profile import" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to import Latexmkrc configuration? (y/n) " choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${LATEX_CONFIG}" "${@}";;
-    n|N ) echo "Skipping ROFI profile import";;
-    * ) echo "invalid";;
+y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${LATEX_CONFIG}" "${@}" ;;
+n | N) echo "Skipping ROFI profile import" ;;
+*) echo "invalid" ;;
 esac

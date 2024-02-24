@@ -7,49 +7,46 @@ VIM_CONFIG="darwin/vim.conf.yaml"
 GIT_CONFIG="darwin/git.conf.yaml"
 LATEX_CONFIG="darwin/latex.conf.yaml"
 
-
 DOTBOT_DIR="dotbot"
 
 DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-read -p "Do you want to install dependences (zsh, Vim, FiraCode)? (y/n)" choice
-case "$choice" in 
-    y|Y ) chmod +x ./darwin/dependences.sh && ./darwin/dependences.sh;;
-    n|N ) echo "Skipping dependences installation";;
-    * ) echo "invalid";;
+read -p "Do you want to install dependences (zsh, Vim, FiraCode, alacritty, tmux, fzf, zoxide)? (y/n)" choice
+case "$choice" in
+y | Y) chmod +x ./darwin/dependences.sh && ./darwin/dependences.sh ;;
+n | N) echo "Skipping dependences installation" ;;
+*) echo "invalid" ;;
 esac
-
 
 cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-
 read -p "Do you want to import Zsh configuration? (y/n)" choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ZSH_CONFIG}" "${@}";;
-    n|N ) echo "Skipping zsh profile import";;
-    * ) echo "invalid";;
+y | Y) mkdir -p ~/.zsh && mkdir -p ~/.config/alacritty && "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ZSH_CONFIG}" "${@}" ;;
+n | N) echo "Skipping zsh profile import" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to import Vim configuration? (y/n) " choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${VIM_CONFIG}" "${@}";;
-    n|N ) echo "Skipping vim profile import";;
-    * ) echo "invalid";;
+y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${VIM_CONFIG}" "${@}" ;;
+n | N) echo "Skipping vim profile import" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to import Git configuration? (y/n) " choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${GIT_CONFIG}" "${@}";;
-    n|N ) echo "Skipping git profile import";;
-    * ) echo "invalid";;
+y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${GIT_CONFIG}" "${@}" ;;
+n | N) echo "Skipping git profile import" ;;
+*) echo "invalid" ;;
 esac
 
 read -p "Do you want to import Latexmkrc configuration? (y/n) " choice
 case "$choice" in
-    y|Y ) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${LATEX_CONFIG}" "${@}";;
-    n|N ) echo "Skipping git profile import";;
-    * ) echo "invalid";;
+y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${LATEX_CONFIG}" "${@}" ;;
+n | N) echo "Skipping git profile import" ;;
+*) echo "invalid" ;;
 esac
