@@ -27,7 +27,6 @@ sudo apt install fzf
 
 # Installing zoxide
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
-export PATH=~/.local/bin:$PATH
 
 # Installing tmux
 sudo apt install tmux

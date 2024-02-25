@@ -49,6 +49,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_COMPLETION_TRIGGER='~~'
 export FZF_DEFAULT_OPTS='--multi --height=80%  --layout=reverse-list --border=double --info=inline --pointer='→''
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Zoxide Environmental variable
+export PATH=~/.local/bin:$PATH
 
 # Update hombrew once a week
 export HOMEBREW_AUTO_UPDATE_SECS=600000
