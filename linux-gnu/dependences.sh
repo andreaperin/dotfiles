@@ -20,13 +20,14 @@ sudo apt install alacritty -y
 curl -sS https://starship.rs/install.sh | sh
 
 # Installing fd
-sudo apt install fd-find
+sudo apt install fdclone
 
 # Installing fzf
 sudo apt install fzf
 
 # Installing zoxide
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+export PATH=~/.local/bin:$PATH
 
 # Installing tmux
 sudo apt install tmux
