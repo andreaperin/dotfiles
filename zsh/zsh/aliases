@@ -16,8 +16,6 @@ alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
 
-## Brew
-alias update='brew update; brew upgrade'
 # check weather
 weather() {
     city="$1"

@@ -27,67 +27,27 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
 
-# List directory contents
-alias ls='ls --color=auto'
-alias lsa='ls -lah'
-alias l='ls -lah'
-alias ll='ls -lh'
-alias la='ls -lAh'
+source $HOME/.zsh/aliases
+alias update='brew update; brew upgrade'
+source $HOME/.zsh/functions
 
-# distro aliases
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
+# ZSH Options
+setopt auto_cd       # cd by typing the dir name if its not a command name
+setopt correct_all   # autocorrect commandsl
+setopt auto_list     # automatically list choices on ambiguous completion
+setopt auto_menu     # automatically use menu completion
+setopt always_to_end # move cursor to end if word had one match
 
-    case $NAME in
-
-    'Solus')
-        alias update='sudo eopkg up'
-        install() {
-            eval 'sudo eopkg it ${1}'
-        }
-        remove() {
-            eval 'sudo eopkg remove ${1}'
-        }
-        ;;
-
-    'Ubuntu')
-        alias update='sudo apt update; sudo apt upgrade'
-        install() {
-            eval 'sudo apt install ${1}'
-        }
-        remove() {
-            eval 'sudo apt remove ${1}'
-        }
-        ;;
-
-    'CentOS Linux')
-        alias update='sudo yum update'
-        install() {
-            eval 'sudo yum install ${1}'
-        }
-        remove() {
-            eval 'sudo yum remove ${1}'
-        }
-        ;;
-    esac
-fi
-
-# check weather
-weather() {
-    city="$1"
-
-    if [ -z "$city" ]; then
-        city="Hannover,Germany"
-    fi
-
-    eval "curl http://wttr.in/${city}"
-}
+# FZF CONFIGURATION
+export FZF_DEFAULT_COMMAND="fd . --maxdepth 4"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_COMPLETION_TRIGGER='~~'
+export FZF_DEFAULT_OPTS='--multi --height=80%  --layout=reverse-list --border=double --info=inline --pointer='→''
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fix delete key
 bindkey "^[[3~" delete-char
 bindkey "^[3;5~" delete-char
 
-# reload configurations
-alias reload="source ~/.zshrc"
-
 eval "$(starship init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
