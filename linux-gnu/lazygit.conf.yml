@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.config/lazygit/config.yml: lazygit/config.yml
+     
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
