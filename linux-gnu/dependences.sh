@@ -3,6 +3,11 @@
 sudo add-apt-repository universe -y
 sudo apt install fonts-firacode -y
 
+## tree and bat for pd/pf
+sudo apt install tree
+sudo apt install bat -y
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
 ## Installing Rofi
 sudo apt install rofi -y
 

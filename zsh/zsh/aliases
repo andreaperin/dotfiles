@@ -5,8 +5,8 @@ alias vimrc="vim ~/.vimrc"
 alias latexmkrc="vim ~/.latexmkrc"
 alias alacrittytoml="vim ~/.config/alacritty/alacritty.toml"
 ## FZF
-alias pf="fd . --maxdepth 1 --type f | fzf --multi --height=80% --border=sharp  --preview='bat --color=always --style=numbers {}' --preview-window='45%,border-sharp' --bind shift-up:preview-page-up,shift-down:preview-page-down"
-alias pd="fd . --maxdepth 1 --type d | fzf --multi --height=80% --border=sharp --preview='tree -C {}' --preview-window='45%,border-sharp' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+alias pf="find . -maxdepth 1 -type f | fzf --multi --height=80% --border=sharp  --preview='bat --color=always --style=numbers {}' --preview-window='45%,border-sharp' --bind shift-up:preview-page-up,shift-down:preview-page-down"
+alias pd="find . -maxdepth 1 -type d | fzf --multi --height=80% --border=sharp --preview='tree -C {}' --preview-window='45%,border-sharp' --bind shift-up:preview-page-up,shift-down:preview-page-down"
 # reload
 alias reload="source ~/.zshrc"
 # List directory contents
