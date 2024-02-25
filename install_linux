@@ -72,3 +72,5 @@ y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${LATEX_CONF
 n | N) echo "Skipping ROFI profile import" ;;
 *) echo "invalid" ;;
 esac
+
+echo "Change default shell: 'chsh -s '$'(which zsh)' and reload"
