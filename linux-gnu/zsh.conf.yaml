@@ -10,7 +10,6 @@
     ~/.zsh/aliases: zsh/zsh/aliases 
     ~/.zsh/functions: zsh/zsh/functions
     ~/.tmux.conf: zsh/tmux/tmux.conf
-    ~/.config/alacritty/alacritty.toml: alacritty/alacritty.toml
     ~/.config/starship.toml: starship/starship.toml
      
 - shell:

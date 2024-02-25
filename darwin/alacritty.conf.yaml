@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~/.config']
+
+- link:
+    ~/.config/alacritty/alacritty.toml: alacritty/alacritty_linux.toml
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

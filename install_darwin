@@ -5,6 +5,7 @@ set -e
 ZSH_CONFIG="darwin/zsh.conf.yaml"
 VIM_CONFIG="darwin/vim.conf.yaml"
 GIT_CONFIG="darwin/git.conf.yaml"
+ALACRITTY_CONFIG="linux-gnu/alacritty.conf.yaml"
 LZGIT_CONFIG="darwin/lazygit.conf.yml"
 LATEX_CONFIG="darwin/latex.conf.yaml"
 
@@ -24,10 +25,17 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-read -p "Do you want to import Zsh configuration? (y/n)" choice
+read -p "Do you want to import Zsh & tmux configuration? (y/n)" choice
 case "$choice" in
-y | Y) mkdir -p ~/.zsh && mkdir -p ~/.config/alacritty && "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ZSH_CONFIG}" "${@}" ;;
+y | Y) mkdir -p ~/.zsh && "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ZSH_CONFIG}" "${@}" ;;
 n | N) echo "Skipping zsh profile import" ;;
+*) echo "invalid" ;;
+esac
+
+read -p "Do you want to import alacritty configuration? (y/n)" choice
+case "$choice" in
+y | Y) mkdir -p ~/.config/alacritty && "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${ALACRITTY_CONFIG}" "${@}" ;;
+n | N) echo "Skipping alacritty profile import" ;;
 *) echo "invalid" ;;
 esac
 
