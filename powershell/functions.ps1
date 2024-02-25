@@ -8,6 +8,9 @@ function Empty-RecycleBin {
     $RecBin.Items() | %{Remove-Item $_.Path -Recurse -Confirm:$false}
 }
 
+function pf {gci -File | fzf --multi --height=80% --border=sharp  --preview='bat --color=always --style=numbers {}' --preview-window='45%,border-sharp' --bind shift-up:preview-page-up,shift-down:preview-page-down}
+function pd {gci -Directory | fzf --multi --height=80% --border=sharp --preview='tree -C {}' --preview-window='45%,border-sharp' --bind shift-up:preview-page-up,shift-down:preview-page-down}
+
 ### Utilities
 ### ----------------------------
 

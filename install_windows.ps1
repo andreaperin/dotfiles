@@ -28,6 +28,8 @@ if ($ud1 -eq 'y')
     . $settingsPATH 
 }
 else {Write-Host "settings will not be changed" }
+##TODO pop up notification for changenging default directory alacritty
+##TODO copy alacritty.toml, lazygit.yml in Winsdows directory
 
 
 Write-Host "Creating Symlinks for git, vim and powershell 5 and 7" -ForegroundColor "Yellow"
