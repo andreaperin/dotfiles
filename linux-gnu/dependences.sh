@@ -13,10 +13,11 @@ sudo apt install zsh -y
 sudo apt install vim -y
 
 # Installing Alacritty
+sudo add-apt-repository ppa:aslatter/ppa -y
 sudo apt install alacritty -y
 
 # Installing starship
-sudo apt install starship -y
+curl -sS https://starship.rs/install.sh | sh
 
 # Installing fd
 sudo apt install fd-find
