@@ -6,12 +6,12 @@ if (Get-Command ls.exe -ErrorAction SilentlyContinue | Test-Path) {
     # List all files in long format
     ${function:l} = { ls -lF @args }
     # List all files in long format, including hidden files
-    ${function:la} = { ls -laF @args }
+    ${function:lsa} = { ls -laF @args }
     # List only directories
     ${function:ll} = { Get-ChildItem -Directory -Force @args }
 } else {
     # List all files, including hidden files
-    ${function:la} = { ls -Force @args }
+    ${function:lsa} = { ls -Force @args }
     # List only directories
     ${function:ll} = { Get-ChildItem -Directory -Force @args }
 }
@@ -27,9 +27,6 @@ if (Get-Command curl.exe -ErrorAction SilentlyContinue | Test-Path) {
     # Gzip-enabled `curl`
     ${function:gurl} = { curl -TransferEncoding GZip }
 }
-
-# Create a new directory and enter it
-Set-Alias mkdir CreateAndSet-Directory
 
 # Determine size of a file or total size of a directory
 Set-Alias fs Get-DiskUsage
