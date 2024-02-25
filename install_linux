@@ -5,7 +5,10 @@ set -e
 ZSH_CONFIG="linux-gnu/zsh.conf.yaml"
 VIM_CONFIG="linux-gnu/vim.conf.yaml"
 GIT_CONFIG="linux-gnu/git.conf.yaml"
-ROFI_CONFIG="linux-gnu/git.conf.yaml"
+
+LZGIT_CONFIG="linux-gnu/lazygit.conf.yaml"
+ROFI_CONFIG="linux-gnu/rofi.conf.yaml"
+
 LATEX_CONFIG="linux-gnu/latex.conf.yaml"
 
 DOTBOT_DIR="dotbot"
@@ -55,6 +58,13 @@ esac
 read -p "Do you want to import Git configuration? (y/n) " choice
 case "$choice" in
 y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${GIT_CONFIG}" "${@}" ;;
+n | N) echo "Skipping git profile import" ;;
+*) echo "invalid" ;;
+esac
+
+read -p "Do you want to import LazyGit configuration? (y/n) " choice
+case "$choice" in
+y | Y) mkdir -p ~/.config/lazygit && "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${LZGIT_CONFIG}" "${@}" ;;
 n | N) echo "Skipping git profile import" ;;
 *) echo "invalid" ;;
 esac

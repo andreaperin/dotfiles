@@ -5,6 +5,7 @@ set -e
 ZSH_CONFIG="darwin/zsh.conf.yaml"
 VIM_CONFIG="darwin/vim.conf.yaml"
 GIT_CONFIG="darwin/git.conf.yaml"
+LZGIT_CONFIG="darwin/lazygit.conf.yaml"
 LATEX_CONFIG="darwin/latex.conf.yaml"
 
 DOTBOT_DIR="dotbot"
@@ -40,6 +41,13 @@ esac
 read -p "Do you want to import Git configuration? (y/n) " choice
 case "$choice" in
 y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${GIT_CONFIG}" "${@}" ;;
+n | N) echo "Skipping git profile import" ;;
+*) echo "invalid" ;;
+esac
+
+read -p "Do you want to import LazyGit configuration? (y/n) " choice
+case "$choice" in
+y | Y) "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${LZGIT_CONFIG}" "${@}" ;;
 n | N) echo "Skipping git profile import" ;;
 *) echo "invalid" ;;
 esac
