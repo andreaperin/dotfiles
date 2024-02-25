@@ -5,7 +5,7 @@ set -e
 ZSH_CONFIG="darwin/zsh.conf.yaml"
 VIM_CONFIG="darwin/vim.conf.yaml"
 GIT_CONFIG="darwin/git.conf.yaml"
-LZGIT_CONFIG="darwin/lazygit.conf.yaml"
+LZGIT_CONFIG="darwin/lazygit.conf.yml"
 LATEX_CONFIG="darwin/latex.conf.yaml"
 
 DOTBOT_DIR="dotbot"

@@ -2,7 +2,7 @@
     link:
       relink: true
 
-- clean: ['~']
+- clean: ['~/.config/lazygit']
 
 - link:
     ~/.config/lazygit/config.yml: lazygit/config.yml
