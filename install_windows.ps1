@@ -46,6 +46,7 @@ foreach ($PYTHON in ('python', 'python3')) {
             $ErrorActionPreference = "Stop" }) {
 
         &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $PWSH_CONFIG $Args
+        &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $VIM_CONFIG $Args
 
         return
     }

@@ -6,7 +6,7 @@
 
 - link:
     ~/.vim: vim
-    ~/.vimrc: vim/vimrc
+    ~/.vimrc: vim/vimrc_windows
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
