@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['$HOME']
+
+- link:
+    ~/AppData/Roaming/lazygit/config.yml: lazygit/config.yml
+    
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

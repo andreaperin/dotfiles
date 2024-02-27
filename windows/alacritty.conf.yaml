@@ -1,0 +1,11 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['$HOME']
+
+- link:
+    ~/AppData/Roaming/alacritty/alacritty.toml: alacritty/alacritty_windows.toml
+    
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

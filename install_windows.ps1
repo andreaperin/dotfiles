@@ -6,6 +6,8 @@ Write-Host "This script needs to be run from a powershell5 elevated terminal (NO
 $VIM_CONFIG="windows/vim.conf.yaml"
 $GIT_CONFIG="windows/git.conf.yaml"
 $PWSH_CONFIG="windows/powershellprofile.conf.yaml"
+$ALACRITTY_CONFIG="windows/alacritty.conf.yaml"
+$LAZYGIT_CONFIG="windows/lazygit.conf.yaml"
 
 $DOTBOT_DIR="dotbot"
 
@@ -47,6 +49,9 @@ foreach ($PYTHON in ('python', 'python3')) {
 
         &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $PWSH_CONFIG $Args
         &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $VIM_CONFIG $Args
+        &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $GIT_CONFIG $Args
+        &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $ALACRITTY_CONFIG $Args
+        &$PYTHON $(Join-Path $BASEDIR -ChildPath $DOTBOT_DIR | Join-Path -ChildPath $DOTBOT_BIN) -d $BASEDIR -c $LAZYGIT_CONFIG $Args
 
         return
     }
