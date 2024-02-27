@@ -6,6 +6,8 @@ Write-Host "Installing PowerShell Modules..." -ForegroundColor "Yellow"
 winget install JanDeDobbeleer.OhMyPosh -s winget --silent --accept-package-agreements
 winget install -e --id Microsoft.PowerToys --silent --accept-package-agreements
 winget install -e --id vim.vim --silent --accept-package-agreements
+iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
+    ni $HOME/vimfiles/autoload/plug.vim -Force
 winget install --id Microsoft.Powershell --source winget --silent --accept-package-agreements
 winget install fzf
 winget install ajeetdsouza.zoxide
