@@ -17,24 +17,21 @@ $BASEDIR=$PSScriptRoot
 $dependenciesPATH="windows\dependencies.ps1"
 $settingsPATH="windows\initial_settings.ps1"
 
-$ud1 = Read-Host "Do you want to install all dependecies OhMyPosh, Powershell, vim ? [y] yes, [n] no "
+$ud1 = Read-Host "Do you want to install all dependencies Powershell, Oh-My-Posh, Vim, Alacritty fzf, Zoxide, lazygit and Powertoys? [y] yes, [n] no "
 if ($ud1 -eq 'y')
 { 
     . $dependenciesPATH
 }
 else {Write-Host "dependencis will not be installed" }
 
-$ud1 = Read-Host "Do you want to change windows settings ? [y] yes, [n] no "
+$ud1 = Read-Host "Do you want to change windows settings for Taskbar&explorer, enable WSL, no hibernation/sleep and cleanup disks? [y] yes, [n] no "
 if ($ud1 -eq 'y')
 { 
     . $settingsPATH 
 }
 else {Write-Host "settings will not be changed" }
-##TODO pop up notification for changenging default directory alacritty
-##TODO copy alacritty.toml, lazygit.yml in Winsdows directory
 
-
-Write-Host "Creating Symlinks for git, vim and powershell 5 and 7" -ForegroundColor "Yellow"
+Write-Host "Creating 'profile' Symlinks for PWSH7, Vim, Git, Alacritty and Lazygit..." -ForegroundColor "Yellow"
 
 Set-Location $BASEDIR
 git -C $DOTBOT_DIR submodule sync --quiet --recursive
