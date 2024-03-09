@@ -37,6 +37,10 @@ Set-Location $BASEDIR
 git -C $DOTBOT_DIR submodule sync --quiet --recursive
 git submodule update --init --recursive $DOTBOT_DIR
 
+New-Item ~/Documents/PowerShell -ItemType Directory -ea 0
+New-Item ~/.config -ItemType Directory -ea 0
+New-Item ~/AppData/Roaming/alacritty -ItemType Directory -ea 0
+New-Item ~/AppData/Roaming/lazygit -ItemType Directory -ea 0
 
 foreach ($PYTHON in ('python', 'python3')) {
     # Python redirects to Microsoft Store in Windows 10 when not installed

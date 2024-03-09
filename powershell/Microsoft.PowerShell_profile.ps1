@@ -13,3 +13,5 @@ $env:FZF_DEFAULT_OPTS='--multi --height=80%  --layout=reverse-list --border=doub
 
 ## Zoxide init
 Invoke-Expression (& { (zoxide init --cmd cd powershell | Out-String) })
+## Starship init
+Invoke-Expression (&starship init powershell)

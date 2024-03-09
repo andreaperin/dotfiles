@@ -82,7 +82,7 @@ color = "#F4DBD6"
 size = 16.0
 
 [font.normal]
-family = "FiraCode nf"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [window]

@@ -10,6 +10,7 @@
     ~/Documents/PowerShell/profile.ps1: powershell/profile.ps1
     ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1: powershell/Microsoft.PowerShell_profile.ps1
     ~/Documents/PowerShell/theme.omp.json: powershell/.theme.omp.json
+    ~/.config/starship.toml: starship\straship_windows.toml
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
