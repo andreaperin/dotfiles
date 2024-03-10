@@ -17,3 +17,5 @@ function pd {gci -Directory | fzf --multi --height=80% --border=sharp --preview=
 # Local and Public IPs
 function publicip {(Invoke-WebRequest -uri "http://ifconfig.me/ip").Content}
 function localip {[System.Net.Dns]::GetHostAddresses($computername)  | where {$_.AddressFamily -notlike "InterNetworkV6"} | foreach {echo $_.IPAddressToString }}
+# Clean-up
+function clean-up {Invoke-Item "C:/Windows/Prefetch" && Invoke-Item "C:\Users\ADMINI~1\AppData\Local\Temp" && cleanmgr}
