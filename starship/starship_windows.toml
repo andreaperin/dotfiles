@@ -55,11 +55,14 @@ disabled = true
 [julia]
 format = "[$symbol$version]($style) "
 symbol = "ஃ "
-style = "bold green"
+detect_extensions = ['jl']
+detect_files = ['Project.toml', 'Manifest.toml']
+style = "bold purple"
 
 [python]
-format = "[$symbol$version]($style) "
+format = 'via [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 style = "bold green"
+pyenv_version_name = false
 
 [memory_usage]
 format = "$symbol[${ram}( | ${swap})]($style) "
